@@ -1,5 +1,6 @@
-##makeCacheMatrix computes the inverse of input matrix and save it in cache
-makeCacheMatrix <- function(x = numeric()) {
+##makeCacheMatrix creates a list containing a function to specific matrix
+##including set, get, set the inverse and get the inverse of the matrix
+makeCacheMatrix <- function(x = matrix()) {
   m <- NULL
   set <- function(y) {
     x <<- y
@@ -13,7 +14,8 @@ makeCacheMatrix <- function(x = numeric()) {
        getinv = getinv)
 }
 
-#cachesolve checks the cache for the matrix's inverse first before computes it
+#cachesolve checks the cache for the matrix's inverse,
+##if available, then retrieve the inverse from cache, otherwise computes it
 cacheSolve <- function(x, ...) {
   m <- x$getinv()
   if(!is.null(m)) {
@@ -31,3 +33,4 @@ cacheSolve <- function(x, ...) {
 c=rbind(c(1, -0.3), c(-0.3, 1))
 tstm=makeCacheMatrix(c)
 cacheSolve(tstm)
+
